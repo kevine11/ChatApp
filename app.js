@@ -6,27 +6,32 @@ const app = express();
 
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
-// var flash = require('express-flash')
+var flash = require('express-flash')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var SequelizeStore = require('connect-session-sequelize')(session.Store);
+// var SequelizeStore = require('connect-session-sequelize')(session.Store);
 var passport = require('passport');
+var db = {};
+
+// var LocalStrategy = require('passport-local').Strategy;
+
+// var myStore = new SequelizeStore({
+//     db: db.sequelize
+// })
+
+// app.use(session({
+//     secret: 'keyboard cat',
+//     store: myStore,
+//     resave: false,
+//     proxy: true,
+// }))
+
+// myStore.sync();
 
 
-var LocalStrategy = require('passport-local').Strategy;
-
-var myStore = new SequelizeStore({
-    db: db.sequelize
-})
-
-app.use(session({
-    secret: 'horde',
-    store: myStore,
-    resave: false,
-    proxy: true,
-}))
-
-myStore.sync();
+//routes
+app.use('/', require('./routes/index'))
+app.use('/users', require('./routes/users'))
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,12 +54,12 @@ app.get('/login', (req, res) => {
     res.render('login')
 });
 
-io.attach(server);
-io.on('connection', function(socket) {
-    socket.on('postMessage', function(data) {
-        io.emit('updateMessages', data);
-    });
-});
+// io.attach(server);
+// io.on('connection', function(socket) {
+//     socket.on('postMessage', function(data) {
+//         io.emit('updateMessages', data);
+//     });
+// });
 
 
 app.post('/login', passport.authenticate('local', 
@@ -99,52 +104,54 @@ app.get('/login', (req, res) => {
     
 // })
 
-passport.use(new LocalStrategy((username, password, done)=>{
-    console.log(`I'm in passport`);
+// passport.use(new LocalStrategy((username, password, done)=>{
+//     console.log(`I'm in passport`);
 
-    db.user.findAll({where: {username: username}})
-    .then((results)=>{
+//     db.user.findAll({where: {username: username}})
+//     .then((results)=>{
 
-        if(results != null){
+//         if(results != null){
 
-            let record = results[0];
+//             let record = results[0];
 
-            bcrypt.compare(password, record.password, (err, response) => {
-                if(response){
-                    console.log('Passwords matched');
+//             bcrypt.compare(password, record.password, (err, response) => {
+//                 if(response){
+//                     console.log('Passwords matched');
 
-                    //serizalize user gets called here
-                    done(null, {id: record.id, username: record.username})
-                }
-                else{
-                    console.log(`Passwords don't match`);
-                    done(null, false);
-                }
-            })
-        }
-        else{
-            console.log(`user not found`)
-            done(null, false)
-        }
+//                     //serizalize user gets called here
+//                     done(null, {id: record.id, username: record.username})
+//                 }
+//                 else{
+//                     console.log(`Passwords don't match`);
+//                     done(null, false);
+//                 }
+//             })
+//         }
+//         else{
+//             console.log(`user not found`)
+//             done(null, false)
+//         }
 
-    })
-}))
+//     })
+// }))
 
-passport.serializeUser((user, done)=>{
-    // passport is adding information to the sessions
+// passport.serializeUser((user, done)=>{
+//     // passport is adding information to the sessions
 
-    done(null, user.id)
-})
+//     done(null, user.id)
+// })
 
-passport.deserializeUser((id, done)=>{
+// passport.deserializeUser((id, done)=>{
 
-    db.user.findByPk(id)
-    .then((record)=>{
-        done(null, record)
-    })
-})
+//     db.user.findByPk(id)
+//     .then((record)=>{
+//         done(null, record)
+//     })
+// })
 
 
-app.listen(3000, () => {
-    console.log(`listening on port 3000`)
+
+
+app.listen(5000, () => {
+    console.log(`listening on port 5000`)
     })

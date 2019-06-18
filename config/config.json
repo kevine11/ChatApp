@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "kevine11",
-    "password": "SkyL1ne89",
-    "database": "sohortapril2019",
-    "host": "mydbapril2019.ccrnyw0s15qi.us-east-2.rds.amazonaws.com",
+    "username": "chatadmin",
+    "password": "april1337",
+    "database": "chatdb",
+    "host": "chatapp.czxc8a0p5a3i.us-east-2.rds.amazonaws.com",
     "dialect": "postgres",
     "operatorsAliases": false
   },
