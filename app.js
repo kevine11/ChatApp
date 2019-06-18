@@ -41,11 +41,13 @@ app.use(bodyParser.json());
 
 app.use(cookieParser())
 
-app.set('views', 'views');
+//EJS
+app.set('views', './views/pages');
 app.set('view engine', 'ejs');
 
+//routes
 app.use(express.static("public"));
-// app.use(require('./routes/index'));
+app.use(require('./routes/index'));
 // app.use(require('./routes/categories'));
 // app.use(require('./routes/games'));
 // app.use(require('./routes/chatroom'));
