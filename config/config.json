@@ -4,8 +4,7 @@
     "password": "april1337",
     "database": "chatdb",
     "host": "chatapp.czxc8a0p5a3i.us-east-2.rds.amazonaws.com",
-    "dialect": "postgres",
-    "operatorsAliases": false
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",

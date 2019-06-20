@@ -1,0 +1,11 @@
+{
+    "pc": [{
+        "genres": ["Action", "RPG", "Shooters", "Simulators"]
+    }],
+    "playstation": [{
+        "genres": ["Action", "RPG", "Shooters", "Simulators"]
+    }],
+    "xbox": [{
+        "genres": ["Action", "RPG", "Shooters", "Simulators"]
+    }]
+}
