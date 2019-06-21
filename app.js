@@ -46,6 +46,10 @@ app.use(require('./routes/xboxrpg.js'))
 app.use(require('./routes/xboxshooter.js'))
 //Glenn's Routes
 
+//Kevin's Routes
+// app.use(require('./routes/server.js'))
+
+
 
 var server = app.listen(PORT, () => console.log('Server is running...'))
 
