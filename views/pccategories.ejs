@@ -6,6 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PC Categories</title>
 </head>
+
+<style>
+    .bgimg{
+        width: 100%;
+    }
+
+    .overlay1{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-index: 1;
+        opacity: .9;
+        font-size: 30px;
+        color: white;
+    }
+
+    .overlay2{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-around;
+        z-index: 1;
+        opacity: 1;
+        font-size: 30px;
+        color: white;
+        margin-top: 40px;
+    }
+</style>
+
 <body>
     <!doctype html>
     <html lang="en">
@@ -31,7 +65,7 @@
             </div>
         </nav>
 
-        <div class="d-flex justify-content-center">
+        <!-- <div class="d-flex justify-content-center">
             Select a chatroom you'd like to join:
         </div>
         <div class="d-flex justify-content-center">
@@ -45,10 +79,27 @@
                 <div class="mr-2">
                     <button onclick="location.href='pcshooterchat'" type="button" class="btn btn-outline-warning" href="#">Shooters</button>
                 </div>
-                <!-- <div class="mr-2">
-                    <button type="button" class="btn btn-outline-warning" href="#">Action</button>
-                </div> -->
             </div>
+        </div> -->
+
+        <div>
+            <div class="overlay1">
+                Select a chatroom you'd like to join:
+            </div>
+                <div class="overlay2">
+                    <div class="btn-group btn-group-justified">
+                        <div class="mr-2">
+                            <button onclick="location.href='pcactionchat'" type="button" class="btn btn-outline-warning" href="#">Action</button>
+                        </div>
+                        <div class="mr-2">
+                            <button onclick="location.href='pcrpgchat'" type="button" class="btn btn-outline-warning" href="#">RPG</button>
+                        </div>
+                        <div class="mr-2">
+                            <button onclick="location.href='pcshooterchat'" type="button" class="btn btn-outline-warning" href="#">Shooters</button>
+                        </div>
+                    </div>
+                </div>
+            <img class="bgimg" src="http://www.mariacenoura.pt/ptpictures/f/24/246594_wallpaper-master.jpg" alt="">
         </div>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
