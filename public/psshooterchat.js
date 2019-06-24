@@ -29,3 +29,23 @@ socket.on('chat', function(data){
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data + ' is typing a message....</em></p>';
 });
+
+socket.on("connect", function(){
+    var pssRoom = "pssRoom";
+    socket.emit('nRoom', pssRoom);
+   
+});
+// PSShooter
+var pssBtn = document.getElementById("pssBtn");
+var pssTxt = document.getElementById("pssTxt");
+var pssMessages = document.getElementById("pssMessages");
+
+pssBtn.addEventListener("click", function(){
+    socket.emit("pss new message", pssTxt.value);
+});
+socket.on("pss news", function(data){
+    pssMessages.innerHTML = pssMessages.innerHTML + "<br>" + data;
+});
+socket.on("pss new user", function(data){
+    pssMessages.innerHTML = pssMessages.innerHTML + "<br>" + data;
+});

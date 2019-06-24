@@ -68,3 +68,11 @@ button{
     width: 100%;
     border-radius: 0 0 2px 2px;
 }
+
+#platforms{
+    background-color: #17de00;
+    background-image: linear-gradient(90deg, #17de00 0%, #000000 50%, #1229de 100%);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

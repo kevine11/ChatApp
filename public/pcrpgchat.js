@@ -29,3 +29,23 @@ socket.on('chat', function(data){
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data + ' is typing a message....</em></p>';
 });
+
+socket.on("connect", function(){
+    var pcrRoom = "pcrRoom";
+    socket.emit('pcrRoom', pcrRoom);
+    
+});
+// PCRpg
+var pcrBtn = document.getElementById("pcrBtn");
+var pcrTxt = document.getElementById("pcrTxt");
+var pcrMessages = document.getElementById("pcrMessages");
+
+pcrBtn.addEventListener("click", function(){
+    socket.emit("pcr new message", pcrTxt.value);
+});
+socket.on("pcr news", function(data){
+    pcrMessages.innerHTML = pcrMessages.innerHTML + "<br>" + data;
+});
+socket.on("pcr user", function(data){
+    pcrMessages.innerHTML = pcrMessages.innerHTML + "<br>" + data;
+});

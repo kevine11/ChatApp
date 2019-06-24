@@ -29,3 +29,23 @@ socket.on('chat', function(data){
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data + ' is typing a message....</em></p>';
 });
+
+socket.on("connect", function(){
+            var psrRoom = "psrRoom";
+            socket.emit('psrRoom', psrRoom);
+        });
+            
+        // PSR
+        var psrBtn = document.getElementById("psrBtn");
+        var psrTxt = document.getElementById("psrTxt");
+        var psrMessages = document.getElementById("psrMessages");
+        
+        nBtn.addEventListener("click", function(){
+            socket.emit("psr new message", psrTxt.value);
+        });
+        socket.on("psr news", function(data){
+            psrMessages.innerHTML = psrMessages.innerHTML + "<br>" + data;
+        });
+        socket.on("node new user", function(data){
+            psrMessages.innerHTML = psrMessages.innerHTML + "<br>" + data;
+        });

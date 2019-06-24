@@ -29,3 +29,25 @@ socket.on('chat', function(data){
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data + ' is typing a message....</em></p>';
 });
+
+//PCAction chat
+
+socket.on("connect", function(){
+    var pcaRoom = "pcaRoom";
+    socket.emit('pcaRoom', pcaRoom);
+    
+});
+
+var pcaBtn = document.getElementById("pcaBtn");
+var pcaTxt = document.getElementById("pcaTxt");
+var pcaMessages = document.getElementById("pcaMessages");
+
+pcaBtn.addEventListener("click", function(){
+    socket.emit("pca new message", pcaTxt.value);
+});
+socket.on("pca news", function(data){
+    pcaMessages.innerHTML = pcaMessages.innerHTML + "<br>" + data;
+});
+socket.on("pca new user", function(data){
+    pcaMessages.innerHTML = pcaMessages.innerHTML + "<br>" + data;
+});

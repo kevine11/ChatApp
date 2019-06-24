@@ -29,3 +29,23 @@ socket.on('chat', function(data){
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data + ' is typing a message....</em></p>';
 });
+
+socket.on("connect", function(){
+    var pcsRoom = "pcsRoom";
+    socket.emit('pcsRoom', pcsRoom);
+    
+});
+// PCShooter
+var pcsBtn = document.getElementById("pcsBtn");
+var nTxt = document.getElementById("pcsTxt");
+var pcsMessages = document.getElementById("pcsMessages");
+
+pcsBtn.addEventListener("click", function(){
+    socket.emit("pcs new message", pcsTxt.value);
+});
+socket.on("pcs news", function(data){
+    pcsMessages.innerHTML = pcsMessages.innerHTML + "<br>" + data;
+});
+socket.on("node new user", function(data){
+    pcsMessages.innerHTML = pcsMessages.innerHTML + "<br>" + data;
+});

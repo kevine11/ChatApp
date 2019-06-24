@@ -22,5 +22,27 @@
         </div>
 
     <script src="/psactionchat.js"></script>
+    <script>
+    socket.on("connect", function(){
+            var psaRoom = "nRoom";
+            socket.emit('psaRoom', psaRoom);
+            
+        });
+        // PSAction
+        var psaBtn = document.getElementById("psaBtn");
+        var psaTxt = document.getElementById("psaTxt");
+        var nMessages = document.getElementById("psaMessages");
+        
+        psaBtn.addEventListener("click", function(){
+            socket.emit("node new message", psaTxt.value);
+        });
+        socket.on("node news", function(data){
+            psaMessages.innerHTML = psaMessages.innerHTML + "<br>" + data;
+        });
+        socket.on("node new user", function(data){
+            psaMessages.innerHTML = psaMessages.innerHTML + "<br>" + data;
+        });
+
+    </script>
 </body>
 </html>

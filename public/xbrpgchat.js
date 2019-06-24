@@ -29,3 +29,24 @@ socket.on('chat', function(data){
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data + ' is typing a message....</em></p>';
 });
+
+socket.on("connect", function(){
+    var xbrRoom = "xbrRoom";
+    socket.emit('nRoom', nRoom);
+    var xbrRoom = "xbrRoom";
+    socket.emit("xbrRoom", xbrRoom);
+});
+// XBRpg
+var xbrBtn = document.getElementById("xbrBtn");
+var xbrTxt = document.getElementById("xbrTxt");
+var xbrMessages = document.getElementById("xbrMessages");
+
+xbrBtn.addEventListener("click", function(){
+    socket.emit("xbr new message", xbrTxt.value);
+});
+socket.on("xbr news", function(data){
+    xbrMessages.innerHTML = xbrMessages.innerHTML + "<br>" + data;
+});
+socket.on("xbr new user", function(data){
+    xbrMessages.innerHTML = xbrMessages.innerHTML + "<br>" + data;
+});
